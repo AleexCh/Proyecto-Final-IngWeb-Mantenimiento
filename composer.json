@@ -1,0 +1,13 @@
+{
+    "name": "user/futbol",
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "./config",
+            "Controller\\": "./controller",
+            "Model\\": "./model",
+            "Router\\": "./router"
+        }
+    }
+}
