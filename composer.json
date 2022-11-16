@@ -1,6 +1,7 @@
 {
     "name": "user/futbol",
     "require": {
+        "phpmailer/phpmailer": "^6.6"
     },
     "autoload": {
         "psr-4": {

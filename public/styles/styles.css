@@ -4,3 +4,21 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.background-crear {
+    background-image: url("/images/bg-crear-cuenta.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.w-auth {
+    width: 90%;
+    margin: 0 auto;
+}
+
+@media (min-width: 998px) {
+    .w-auth {
+        width: 40%;
+    }
+}
