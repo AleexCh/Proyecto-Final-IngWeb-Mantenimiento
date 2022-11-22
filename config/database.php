@@ -1,5 +1,8 @@
 <?php
 
+//Configuracion de la base de datos, hacemos un try catch por si falla que no explote la aplicacion
+//y tenemos la conexion en una variable llamada $db
+
 try {
     $db = mysqli_connect(
         "127.0.0.1",

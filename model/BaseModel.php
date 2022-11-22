@@ -2,14 +2,23 @@
 
 namespace Model;
 
+//Aca hay muchas cosas que explicar
+
 class BaseModel
 {
+    //primero los atributos de mi clase son la base de datos, la tabla que queremos utilizar
+    //un arreglo de alertas que creo que no se usa en este ejemplo
+    //un mensaje de error este si se usa
+    //algunas cosas igual no se usen porque esto esta reutilizado :v
+    //Este modelo no se instancia sino que se extiende a otras clases modelo como usuarios, equipos, etc
+
     protected static $database;
     protected static string $table = "";
     protected static array $columnsDB = [];
     protected static array $alerts = [];
     protected static string $error = "";
 
+    //Este es el metodo para setear la base de datos el cual lo hicimos en config/app.php
     public static function setDB($database): void
     {
         self::$database = $database;
@@ -25,6 +34,7 @@ class BaseModel
         return self::$error;
     }
 
+    //este junto con otros mas son para el manejo de las consultas a la base de datos
     public static function querySQL($query): array
     {
         $array = [];
@@ -39,6 +49,7 @@ class BaseModel
         return $array;
     }
 
+    //Para el manejo de las consultas de base de datos
     protected static function createObject($data): static
     {
         $object = new static;
@@ -54,6 +65,7 @@ class BaseModel
         return $object;
     }
 
+    //Para el manejo de consulta de base de datos
     public function attributes(): array
     {
         $attributes = [];
@@ -66,6 +78,7 @@ class BaseModel
         return $attributes;
     }
 
+    //Esto es para sanitizar los datos que llegan y evitar que hagan ataques de inyecciones SQL
     public function cleanData(): array
     {
         $attributes = $this->attributes();
@@ -78,6 +91,7 @@ class BaseModel
         return $sanitize;
     }
 
+    //Creo que no se usa :v
     public function sync($args=[]): void
     {
         foreach($args as $key => $value)
@@ -89,12 +103,14 @@ class BaseModel
         }
     }
 
+    //Metodo para crear una consulta de todos los registros de una tabla
     public static function findAll(): array
     {
         $query = "SELECT * FROM " . static::$table;
         return self::querySQL($query);
     }
 
+    //Metodo para crear un registro en especifico de una tabla, se busc apor Id
     public static function findById($id)
     {
         $query = "SELECT * FROM " . static::$table . " WHERE id = ${id}";
@@ -102,6 +118,7 @@ class BaseModel
         return array_shift($result);
     }
 
+    //Metodo para hacer un where se le pasa una columna y un valor, solo retorna un objeto
     public static function findWhere($column, $valor)
     {
         $query = "SELECT * FROM " . static::$table . " WHERE ${column} = '${valor}'";
@@ -114,12 +131,14 @@ class BaseModel
         return $result;
     }
 
+    //Lo mismo que el anterior pero retorna varios
     public static function findAllWhere($columna, $valor): array
     {
         $query = "SELECT * FROM " . static::$table . " WHERE ${columna} = '${valor}'";
         return self::querySQL($query);
     }
 
+    //Para guardar el el objeto en la base de datos
     public function save(): array
     {
         $result = "";
@@ -133,6 +152,7 @@ class BaseModel
         return $result;
     }
 
+    //Implementacion en la funcion save en este caso crea
     public function create(): array
     {
         $attributes = $this->cleanData();
@@ -148,6 +168,7 @@ class BaseModel
         ];
     }
 
+    //Implementacion en el save enn este caso es para actualizar, se le debe pasar un id
     public function update(): array
     {
         $attributes = $this->cleanData();
@@ -168,6 +189,7 @@ class BaseModel
         ];
     }
 
+    //funcion para eliminar un objeto de la base de datos
     public function delete()
     {
         $query = "DELETE FROM " . static::$table . " WHERE id = " . self::$database->escape_string($this->id) . " LIMIT 1";

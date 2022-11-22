@@ -8,6 +8,7 @@
             "App\\": "./config",
             "Controller\\": "./controller",
             "Model\\": "./model",
+            "Middle\\": "./middleware",
             "Router\\": "./router"
         }
     }

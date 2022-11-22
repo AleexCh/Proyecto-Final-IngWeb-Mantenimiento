@@ -2,6 +2,9 @@
 
 namespace App;
 
+//Esta es la clase router que maneja las rutas se pueden decir que se lo encontraron en un video porque
+//no se como explicarlo exactamente
+
 class Router
 {
     public array $getRoutes = [];
