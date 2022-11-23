@@ -33,6 +33,7 @@ $router->get("/", [PagesController::class, "index"]);
 $router->get("/equipos", [PagesController::class, "teams"]);
 
 //Admin Routes
-$router->get("/admin", [AdminController::class, "index"]);
+$router->get("/admin", [AdminController::class, "getIndex"]);
+$router->get("/editar-partido", [AdminController::class, "getUpdateGame"]);
 
 $router->verifyRoutes();
