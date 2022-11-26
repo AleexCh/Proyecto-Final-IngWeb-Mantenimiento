@@ -28,6 +28,8 @@ $router->post("/recuperar-cuenta", [AuthController::class, "postRecoverAccount"]
 $router->get("/cambiar-contraseña", [AuthController::class, "getChangePassword"]);
 $router->post("/cambiar-contraseña", [AuthController::class, "postChangePassword"]);
 
+$router->get("/logout", [AuthController::class, "logout"]);
+
 //Public Routes
 $router->get("/", [PagesController::class, "index"]);
 $router->get("/equipos", [PagesController::class, "teams"]);

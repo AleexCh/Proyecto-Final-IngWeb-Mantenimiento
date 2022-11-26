@@ -12,7 +12,7 @@ class AuthController
 {
     public static function getRegister(Router $router) : void
     {
-        self::renderCreateUser($router, [], null);
+        self::renderCreateUser($router, null);
     }
 
     public static function postRegister(Router $router) : void
@@ -32,7 +32,7 @@ class AuthController
             // con el correo como parametro si devuelve algo es porque si esta registrado y renderizamos el error;
             //El metodo die() es para cortar la conexion es como un return
             if(User::findWhere("email", $userToCreate->email)) {
-                self::renderCreateUser($router, [], "El correo ya está registrado");
+                self::renderCreateUser($router, "El correo ya está registrado");
                 die();
             }
 
@@ -46,7 +46,7 @@ class AuthController
 
     public static function getLogin(Router $router) : void
     {
-        self::renderLogin($router,  [], null);
+        self::renderLogin($router, null);
     }
 
     public static function postLogin(Router $router) : void
@@ -95,22 +95,29 @@ class AuthController
         die();
     }
 
+    public static function logout() : void
+    {
+        session_start();
+        $_SESSION = [];
+        header("Location: /login");
+    }
+
 
     //Los render son una metodos privados establecidos para no repetir el codigo de renderizar una vista
     // se le pasa el router, un arreglo de atributos
     // mensaje de error el cual tambien podria ir dentro de los attributos
-    private static function renderCreateUser($router, array $attributes, string | null $error) : void
+    private static function renderCreateUser($router, string | null $error) : void
     {
         $router->render("pages/auth/register", "index", [
-            "background" => "",
+            "background" => "bg-auth",
             "error" => $error
         ]);
     }
 
-    private static function renderLogin($router, array $attributes, string | null $error) : void
+    private static function renderLogin($router, string | null $error) : void
     {
         $router->render("pages/auth/login", "index", [
-            "background" => "",
+            "background" => "bg-auth",
             "error" => $error
         ]);
     }
@@ -119,17 +126,12 @@ class AuthController
     private static function valid(string | null $toValid, string $render, $router) : void
     {
         if($toValid != null && $render == "login") {
-            self::renderLogin($router, [], $toValid);
+            self::renderLogin($router, $toValid);
             die();
         }
 
         else if($toValid != null && $render == "register") {
-            self::renderCreateUser($router, [], $toValid);
-            die();
-        }
-
-        else if($toValid != null && $render == "recover") {
-            self::renderRecoverAccount($router, [], $toValid);
+            self::renderCreateUser($router, $toValid);
             die();
         }
     }

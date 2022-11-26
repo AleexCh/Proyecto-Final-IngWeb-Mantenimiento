@@ -13,7 +13,7 @@ class AdminController
     {
         Auth::authenticate();
         Auth::authorizate();
-        self::renderIndex($router, [], null);
+        self::renderIndex($router, null);
     }
 
     public static function getUpdateGame(Router $router) : void
@@ -22,10 +22,15 @@ class AdminController
         Auth::authorizate();
 
         $id = $_GET["id"];
-        self::renderUpdateGame($router, [], null, $id);
+        self::renderUpdateGame($router, null, $id);
     }
 
-    private static function renderIndex($router, array $attributes, string | null $error) : void
+    public static function postUpdateGame(Router $router) : void
+    {
+
+    }
+
+    private static function renderIndex($router, string | null $error) : void
     {
         $games = Games::findAll();
         $teams = Teams::findAll();
@@ -34,11 +39,12 @@ class AdminController
             "background" => "",
             "error" => $error,
             "teams" => $teams,
-            "games" => $games
+            "games" => $games,
+            "active" => "dashboard"
         ]);
     }
 
-    private static function renderUpdateGame($router, array $attributes, string | null $error, int $id) : void
+    private static function renderUpdateGame($router, string | null $error, int $id) : void
     {
         $teams = Teams::findAll();
         $game = Games::findById($id);

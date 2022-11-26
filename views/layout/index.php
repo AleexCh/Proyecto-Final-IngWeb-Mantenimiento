@@ -10,7 +10,6 @@
 </head>
 <body class="<?php echo $background ?? "" ?>">
     <?php echo $content ?? "" ?>
-    <?php include_once __DIR__ . "./../components/footer.php" ?>
     <script src="/javascript/bootstrap.bundle.js"></script>
 </body>
 </html>
