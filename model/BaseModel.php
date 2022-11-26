@@ -85,7 +85,11 @@ class BaseModel
         $sanitize = [];
         foreach($attributes as $key => $value)
         {
-            $sanitize[$key] = self::$database->escape_string($value);
+            if($value != null) {
+                $sanitize[$key] = self::$database->escape_string($value);
+            }
+
+            $sanitize = $attributes;
         }
 
         return $sanitize;
@@ -175,13 +179,18 @@ class BaseModel
         $values = [];
         foreach($attributes as $key => $value)
         {
-            $values[] = "{$key}='{$value}'";
+            if($value != null) {
+                $values[] = "{$key}='{$value}'";
+            } else {
+                $values[] = "{$key}=null";
+            }
         }
 
         $query = "UPDATE " . static::$table ." SET ";
         $query .=  join(', ', $values );
         $query .= " WHERE id = '" . self::$database->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 ";
+
         $result = self::$database->query($query);
         return [
             "result" => $result,

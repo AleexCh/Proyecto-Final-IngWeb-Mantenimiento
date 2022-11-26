@@ -39,7 +39,13 @@
                         </div>
                     </td>
                     <td><?php echo $game->play_date ?></td>
-                    <td><?php echo $game->type ?></td>
+                    <td>
+                        <?php foreach ($fase ?? [] as $fs):
+                            if($fs->id == $game->fase_id):
+                                echo $fs->name;
+                            endif;
+                        endforeach; ?>
+                    </td>
                     <td>
                         <a href="<?php echo '/editar-partido?id=' . $game->id ?>" class="btn btn-outline-dark">Editar</a>
                     </td>
