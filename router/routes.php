@@ -32,6 +32,11 @@ $router->get("/logout", [AuthController::class, "logout"]);
 
 //Public Routes
 $router->get("/", [PagesController::class, "index"]);
+$router->get("/posiciones", [PagesController::class, "getPosiciones"]);
+$router->get("/equipo", [PagesController::class, "getTeam"]);
+$router->get("/favoritos", [PagesController::class, "getFavoritesPage"]);
+$router->get("/resultados", [PagesController::class, "getResultadosPage"]);
+
 $router->get("/api/equipos", [PagesController::class, "apiGetTeams"]);
 $router->get("/api/equipo", [PagesController::class, "apiGetTeam"]);
 $router->get("/api/partidos", [PagesController::class, "apiGetGames"]);

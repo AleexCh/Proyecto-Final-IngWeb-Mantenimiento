@@ -11,5 +11,6 @@
 <body class="<?php echo $background ?? "" ?>">
     <?php echo $content ?? "" ?>
     <script src="/javascript/bootstrap.bundle.js"></script>
+    <script src="/javascript/app.js"></script>
 </body>
 </html>
