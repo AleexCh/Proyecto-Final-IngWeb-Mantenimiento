@@ -12,7 +12,10 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end gap-4">
                     <li class="nav-item text-center">
-                        <a href="/admin" class="nav-link <?php echo (isset($active) && $active == 'dashboard') ? 'active fw-bolder' : ''; ?>" aria-current="page">Dashboard</a>
+                        <a href="/admin/partidos" class="nav-link <?php echo (isset($active) && $active == 'games') ? 'active fw-bolder' : ''; ?>" aria-current="page">Partidos</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a href="/admin/equipos" class="nav-link <?php echo (isset($active) && $active == 'teams') ? 'active fw-bolder' : ''; ?>" aria-current="page">Equipos</a>
                     </li>
                     <li class="nav-item">
                         <a href="/logout" class="btn btn-light text-center text-uppercase w-100">Cerrar Sesión</a>

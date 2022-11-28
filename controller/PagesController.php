@@ -40,7 +40,7 @@ class PagesController
         $games = Games::findAll();
 
         session_start();
-        if($_SESSION["is_auth"]) {
+        if(isset($_SESSION["is_auth"])) {
             $favorites = Favorites::findAllWhere("user_id", $_SESSION["user_id"]);
             $router->render("pages/team", "index", [
                 "background" => "bg_teams",
@@ -58,7 +58,7 @@ class PagesController
             "teams" => $teams,
             "equipo" => $team,
             "games" => $games,
-            "players" => $players
+            "players" => $players,
         ]);
         die();
     }
@@ -67,6 +67,7 @@ class PagesController
     {
         $teams = Teams::findAll();
         $router->render("pages/posiciones", "index", [
+            "background" => "bg_teams",
             "teams" => $teams
         ]);
     }
@@ -74,6 +75,8 @@ class PagesController
     public static function getFavoritesPage(Router $router) : void
     {
         session_start();
+        Auth::authenticate();
+
         if($_SESSION["is_auth"]) {
             $favorites = Favorites::findAllWhere("user_id", $_SESSION["user_id"]);
             $teams = Teams::findAll();
@@ -83,7 +86,7 @@ class PagesController
                 "background" => "bg_teams",
                 "favorites" => $favorites,
                 "games" => $games,
-                "teams" => $teams
+                "teams" => $teams,
             ]);
             die();
         }
@@ -91,20 +94,51 @@ class PagesController
 
     public static function getResultadosPage(Router $router) : void
     {
-        $date = $_GET["date"];
-        if(!$date) {
-            $date = date("Y-n-d");
+        $date = date("Y-n-d");
+
+        if($_SERVER["REQUEST_METHOD"] === "POST") {
+            $date = $_POST["play_date"];
         }
 
-        $games = Games::findAll("play_date", $date);
+        $teams = Teams::findAll();
+        $games = Games::findAllWhereBetween("play_date", $date, "00:00:00", "23:59:00");
         $router->render("pages/resultados", "index", [
             "background" => "bg_teams",
-            "games" => $games
+            "date" => $date,
+            "games" => $games,
+            "teams" => $teams,
+        ]);
+    }
+
+    public static function getClasif(Router $router) : void
+    {
+        $octavos = Games::findAllWhere("fase_id", "2");
+        $cuartos = Games::findAllWhere("fase_id", "3");
+        $semis = Games::findAllWhere("fase_id", "4");
+        $final = Games::findAllWhere("fase_id", "5");
+        $teams = Teams::findAll();
+
+        $router->render("pages/clasif", "index", [
+            "background" => "bg_teams",
+            "octavos" => $octavos,
+            "cuartos" => $cuartos,
+            "semis" => $semis,
+            "final" => $final,
+            "teams" => $teams
         ]);
     }
 
 
     //API
+    public static function apis(Router $router) : void
+    {
+        $apis = ["/api/equipos", "/api/equipo", "/api/partidos", "/api/fases", "/api/favoritos"];
+        $router->render("pages/apis", "index", [
+            "background" => "bg_teams",
+            "apis" => $apis
+        ]);
+    }
+
     public static function apiGetTeams() : void
     {
         $teams = Teams::findAll();
@@ -170,5 +204,26 @@ class PagesController
         $newFavorite->save();
 
         echo json_encode(true);
+    }
+
+    public static function apiDeleteFavorite() : void
+    {
+        session_start();
+        Auth::authenticate();
+        $id = $_GET["id"];
+        if(!$id) {
+            echo json_encode(false);
+            die();
+        }
+
+        $favorite = Favorites::findById($id);
+        if(!$favorite) {
+            echo json_encode(false);
+            die();
+        }
+
+        $favorite->delete();
+        echo json_encode(true);
+        die();
     }
 }

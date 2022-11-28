@@ -12,7 +12,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#"  role="button" data-bs-toggle="dropdown">Equipos</a>
@@ -26,19 +26,28 @@
                         <a class="nav-link" href="/resultados">Resultados</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tabla de posiciones por equipos</a>
+                        <a class="nav-link" href="/posiciones">Tabla de posiciones por equipos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/favoritos">Favoritos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Clasificación</a>
+                        <a class="nav-link" href="/clasificacion">Clasificación</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">API</a>
+                        <a class="nav-link" href="/apis">API</a>
                     </li>
                 </ul>
+
+                <div class="nav-item">
+                    <?php if(isset($_SESSION["is_auth"])): ?>
+                        <a class="btn btn-primary col-12 col-lg-auto" href="/logout">Cerrar Sesión</a>
+                    <?php else: ?>
+                        <a class="btn btn-primary col-12 col-lg-auto" href="/login">Iniciar Sesión</a>
+                    <?php endif; ?>
+                </div>
             </div>
+
         </div>
     </nav>
 </header>

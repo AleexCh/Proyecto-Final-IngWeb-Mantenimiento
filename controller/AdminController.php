@@ -23,17 +23,26 @@ class AdminController
         Auth::authorizate();
 
         $id = $_GET["id"];
+        if(!isset($id)) {
+            header("Location: /admin/partidos");
+        }
+
         self::renderUpdateGame($router, null, $id);
     }
 
     public static function postUpdateGame(Router $router) : void
     {
+        Auth::authorizate();
+        Auth::authorizate();
+
+        $id = $_GET["id"];
+        if(!isset($id)) {
+            header("Location: /admin/partidos");
+        }
+
         $gameToUpdate = Games::findById(htmlspecialchars($_GET["id"]));
-        if (!$gameToUpdate) {
-            echo "<pre>";
-            echo "No se encontro al partido";
-            echo "</pre>";
-            die();
+        if (!isset($gameToUpdate)) {
+            header("Location: /admin/partidos");
         }
 
         if(isset($_POST["first_team"]) && empty($_POST["first_team"])) {
@@ -66,9 +75,76 @@ class AdminController
 
         $gameSaved = $gameToUpdate->save();
         if ($gameSaved) {
-            header("Location: /admin");
+            header("Location: /admin/partidos");
         }
         die();
+    }
+
+    public static function getAdminTeams(Router $router) : void
+    {
+        Auth::authorizate();
+        Auth::authenticate();
+        self::renderAdminTeams($router, null);
+    }
+
+    public static function getUpdateTeam(Router $router) : void
+    {
+        Auth::authenticate();
+        Auth::authorizate();
+
+        $id = $_GET["id"];
+        if(!isset($id)) {
+            header("Location: /admin/equipos");
+        }
+
+        self::renderUpdateTeam($router, null, $id);
+    }
+
+    public static function postUpdateTeam(Router $router) : void
+    {
+        Auth::authorizate();
+        Auth::authorizate();
+
+        $id = $_GET["id"];
+        if(!isset($id)) {
+            header("Location: /admin/equipos");
+        }
+
+        $team = Teams::findById(htmlspecialchars($_GET["id"]));
+        if (!isset($team)) {
+            header("Location: /admin/equipos");
+        }
+
+//        echo "<pre>";
+//        var_dump($_POST);
+//        var_dump($team);
+
+        if(isset($_POST["win"]) && !empty($_POST["win"])) {
+            $team->win = $_POST["win"];
+        }
+
+        if(isset($_POST["draw"]) && !empty($_POST["draw"])) {
+            $team->draw = $_POST["draw"];
+        }
+
+        if(isset($_POST["loss"]) && !empty($_POST["loss"])) {
+            $team->loss = $_POST["loss"];
+        }
+
+        if(isset($_POST["goals_favor"]) && !empty($_POST["goals_favor"])) {
+            $team->goals_favor = $_POST["goals_favor"];
+        }
+
+        if(isset($_POST["goals_againts"]) && !empty($_POST["goals_againts"])) {
+            $team->goals_againts = $_POST["goals_againts"];
+        }
+
+//        var_dump($team);
+//        echo "<pre>";
+//        exit();
+
+        $team->save();
+        header("Location: /admin/equipos");
     }
 
     private static function renderIndex($router, string | null $error) : void
@@ -83,7 +159,17 @@ class AdminController
             "teams" => $teams,
             "games" => $games,
             "fase" => $fase,
-            "active" => "dashboard"
+            "active" => "games"
+        ]);
+    }
+
+    private static function renderAdminTeams($router, string | null $error) : void
+    {
+        $teams = Teams::findAll();
+        $router->render("pages/admin/teams", "index", [
+            "background" => "",
+            "teams" => $teams,
+            "active" => "teams"
         ]);
     }
 
@@ -91,11 +177,29 @@ class AdminController
     {
         $teams = Teams::findAll();
         $game = Games::findById($id);
+        if (!isset($game)) {
+            header("Location: /admin/partidos");
+        }
+
         $router->render("pages/admin/update", "index", [
             "background" => "",
             "error" => $error,
             "teams" => $teams,
             "game" => $game
+        ]);
+    }
+
+    private static function renderUpdateTeam($router, string | null $error, int $id) : void
+    {
+        $team = Teams::findById(htmlspecialchars($id));
+        if (!isset($team)) {
+            header("Location: /admin/partidos");
+        }
+
+        $router->render("pages/admin/updateTeams", "index", [
+            "background" => "",
+            "error" => $error,
+            "team" => $team,
         ]);
     }
 }

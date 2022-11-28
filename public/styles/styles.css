@@ -3,7 +3,6 @@
     background-position: center, center;
     background-repeat: no-repeat, no-repeat;
     background-size: cover, cover;
-    min-height: 100vh;
 }
 
 .bg-auth {
@@ -19,7 +18,7 @@
     border-radius: 15px;
 }
 
-.w-auth {
+.w-auth, .w-positions {
     width: 90%;
     margin: 0 auto;
 }
@@ -27,6 +26,10 @@
 @media (min-width: 998px) {
     .w-auth {
         width: 50%;
+    }
+
+    .w-positions {
+        width: 75%;
     }
 }
 
@@ -52,7 +55,7 @@
 }
 
 .fs-big {
-    font-size: 75px;
+    font-size: 50px;
 }
 
 .grid-2 {
@@ -66,4 +69,38 @@
     .grid-2 {
         grid-template-columns: 1fr 1fr;
     }
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.hover:hover {
+    color: red !important;
+}
+
+.clasif-div {
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    width: 175px;
+}
+
+.grid-5 {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 2fr 1fr;
+    margin: 0 auto;
+}
+
+.ml-px {
+    margin-left: 50px;
+}
+
+.mr-px {
+    margin-right: 50px;
+}
+
+.cursor-disable {
+    cursor: not-allowed;
 }

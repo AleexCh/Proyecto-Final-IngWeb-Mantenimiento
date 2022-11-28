@@ -1,7 +1,9 @@
+<?php echo $script ?>
+
 <?php include_once __DIR__ . "./../components/header.php" ?>
 <h1 class="my-4 text-center text-white fs-big"><?php echo $equipo->country ?></h1>
-<div class="d-flex w-90 justify-content-between">
-    <div class="col-5">
+<div class="w-90 grid-2 gap-5">
+    <div>
         <?php include_once __DIR__ . "./../components/fav-btn.php" ?>
         <div>
             <?php foreach ($games as $game): ?>
@@ -12,9 +14,9 @@
                                 <p><?php echo $team->country ?></p>
                             <?php endif; ?>
                         <?php endforeach; ?>
-                        <p><?php echo $game->first_team_goals ?></p>
+                        <p><?php echo ($game->first_team_goals !== null) ? $game->first_team_goals : "-"; ?></p>
                         <p>vs</p>
-                        <p><?php echo $game->second_team_goals ?></p>
+                        <p><?php echo ($game->second_team_goals !== null) ? $game->second_team_goals : "-"; ?></p>
                         <?php foreach ($teams as $team): ?>
                             <?php if($team->id == $game->second_team): ?>
                                 <p><?php echo $team->country ?></p>
@@ -24,9 +26,9 @@
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
-
     </div>
-    <div class="px-3 px-md-5 col-5 mb-5 bg-form-auth w-auth">
+
+    <div class="px-3 px-md-5 mb-5 bg-form-auth">
         <div class="overflow-x-scroll">
             <table class="table bg-transparent table-hover text-nowrap">
                 <thead>
@@ -45,7 +47,6 @@
                 </tbody>
             </table>
         </div>
-
-        <?php include_once __DIR__ . "./../../components/footer.php" ?>
     </div>
 </div>
+<script src="/javascript/favorites.js"></script>

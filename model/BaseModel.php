@@ -49,7 +49,7 @@ class BaseModel
         return $array;
     }
 
-    //Para el manejo de las consultas de base de datos
+    //Estructurar el objeto para PHP
     protected static function createObject($data): static
     {
         $object = new static;
@@ -142,6 +142,12 @@ class BaseModel
         return self::querySQL($query);
     }
 
+    public static function findAllWhereBetween($column, $value, $param1, $param2): array
+    {
+        $query = "SELECT * FROM " . static::$table . " WHERE ${column} BETWEEN '${value} ${param1}' AND '${value} ${param2}'";
+        return self::querySQL($query);
+    }
+
     //Para guardar el el objeto en la base de datos
     public function save(): array
     {
@@ -180,7 +186,7 @@ class BaseModel
         foreach($attributes as $key => $value)
         {
             if($value != null) {
-                $values[] = "{$key}='{$value}'";
+                $values[] = "`{$key}`='{$value}'";
             } else {
                 $values[] = "{$key}=null";
             }
@@ -190,6 +196,10 @@ class BaseModel
         $query .=  join(', ', $values );
         $query .= " WHERE id = '" . self::$database->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 ";
+
+        echo "<pre>";
+        var_dump($query);
+        echo "</pre>";
 
         $result = self::$database->query($query);
         return [

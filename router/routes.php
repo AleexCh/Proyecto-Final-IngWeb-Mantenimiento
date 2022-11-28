@@ -36,6 +36,10 @@ $router->get("/posiciones", [PagesController::class, "getPosiciones"]);
 $router->get("/equipo", [PagesController::class, "getTeam"]);
 $router->get("/favoritos", [PagesController::class, "getFavoritesPage"]);
 $router->get("/resultados", [PagesController::class, "getResultadosPage"]);
+$router->post("/resultados", [PagesController::class, "getResultadosPage"]);
+$router->get("/clasificacion", [PagesController::class, "getClasif"]);
+$router->get("/apis", [PagesController::class, "apis"]);
+
 
 $router->get("/api/equipos", [PagesController::class, "apiGetTeams"]);
 $router->get("/api/equipo", [PagesController::class, "apiGetTeam"]);
@@ -43,10 +47,14 @@ $router->get("/api/partidos", [PagesController::class, "apiGetGames"]);
 $router->get("/api/fases", [PagesController::class, "apiGetFases"]);
 $router->get("/api/favoritos", [PagesController::class, "apiGetFavorites"]);
 $router->get("/api/add-favoritos", [PagesController::class, "apiNewFavorite"]);
+$router->get("/api/delete-favoritos", [PagesController::class, "apiDeleteFavorite"]);
 
 //Admin Routes
-$router->get("/admin", [AdminController::class, "getIndex"]);
+$router->get("/admin/partidos", [AdminController::class, "getIndex"]);
+$router->get("/admin/equipos", [AdminController::class, "getAdminTeams"]);
 $router->get("/editar-partido", [AdminController::class, "getUpdateGame"]);
 $router->post("/editar-partido", [AdminController::class, "postUpdateGame"]);
+$router->get("/editar-equipo", [AdminController::class, "getUpdateTeam"]);
+$router->post("/editar-equipo", [AdminController::class, "postUpdateTeam"]);
 
 $router->verifyRoutes();
