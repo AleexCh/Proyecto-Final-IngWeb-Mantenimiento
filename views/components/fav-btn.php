@@ -1,8 +1,10 @@
 <?php
 $teamIds = [];
-foreach ($favorites as $favorite):
+if(isset($favorites)){
+    foreach ($favorites as $favorite):
     $teamIds[] = $favorite->team_id;
 endforeach;
+}
 
 if(!isset($_SESSION["is_auth"])) : ?>
     <a class="btn btn-warning btn-lg mb-4 disabled">

@@ -19,14 +19,14 @@ class PagesController
 
     public static function getTeam(Router $router) : void
     {
-        $id = htmlspecialchars($_GET["id"]);
-        if(!$id) {
+        if(!isset($_GET["id"])) {
             echo "<pre>";
             echo "falta el id";
             echo "</pre>";
             exit();
         }
-
+        
+        $id = htmlspecialchars($_GET["id"]);
         $teams = Teams::findAll();
         $team = Teams::findById($id);
         if(!$team) {
@@ -75,7 +75,6 @@ class PagesController
 
     public static function getFavoritesPage(Router $router) : void
     {
-        session_start();
         Auth::authenticate();
 
         if($_SESSION["is_auth"]) {
@@ -148,13 +147,15 @@ class PagesController
 
     public static function apiGetTeam() : void
     {
-        $id = htmlspecialchars($_GET["id"]);
-        if (!$id) {
+        if(!isset($_GET["id"])) {
             echo json_encode("No se ha proporcionado ningun parametro id");
         }
-
-        $team = Teams::findById(htmlspecialchars($id));
-        echo json_encode($team);
+        else{
+            $id = htmlspecialchars($_GET["id"]);
+            $team = Teams::findById(htmlspecialchars($id));
+            echo json_encode($team);
+        }
+        
     }
 
     public static function apiGetGames() : void
