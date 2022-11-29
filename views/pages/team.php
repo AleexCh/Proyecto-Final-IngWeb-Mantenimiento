@@ -1,4 +1,7 @@
-<?php echo $script ?>
+<?php 
+    if(isset($script)){
+        echo $script;
+    }?>
 
 <?php include_once __DIR__ . "./../components/header.php" ?>
 <h1 class="my-4 text-center text-white fs-big"><?php echo $equipo->country ?></h1>
