@@ -71,7 +71,7 @@
             </div>
 
             <div class="clasif-div">
-                <?php if($octavos[2]->second_team === null):
+                <?php if(isset($octavos) or $octavos[2]->second_team === null):
                     echo "-";
                 else:
                     foreach ($teams as $team):
@@ -234,7 +234,7 @@
         <div class="d-flex flex-column gap-3 align-items-center ml-px">
             <div class="d-flex flex-column gap-3 align-items-center mr-px">
                 <div class="clasif-div">
-                    <?php if($cuartos[2]->first_team === null):
+                    <?php if( isset($cuartos) or $cuartos[2]->first_team === null):
                         echo "-";
                     else:
                         foreach ($teams as $team):
@@ -246,7 +246,7 @@
                 </div>
 
                 <div class="clasif-div">
-                    <?php if($cuartos[2]->second_team === null):
+                    <?php if(isset($cuartos) or $cuartos[2]->second_team === null):
                         echo "-";
                     else:
                         foreach ($teams as $team):
@@ -289,7 +289,7 @@
         <div class="d-flex flex-column gap-3 align-items-center ml-px">
             <div class="d-flex flex-column gap-3 align-items-center mr-px">
                 <div class="clasif-div">
-                    <?php if($cuartos[3]->first_team === null):
+                    <?php if(isset($cuartos) or $cuartos[3]->first_team === null):
                         echo "-";
                     else:
                         foreach ($teams as $team):
@@ -301,7 +301,7 @@
                 </div>
 
                 <div class="clasif-div">
-                    <?php if($cuartos[3]->second_team === null):
+                    <?php if( isset($cuartos) or $cuartos[3]->second_team === null):
                         echo "-";
                     else:
                         foreach ($teams as $team):
@@ -320,7 +320,7 @@
     <div class="d-flex flex-column align-items-end my-5 gap-5">
         <div class="d-flex flex-column gap-3">
             <div class="clasif-div">
-                <?php if($octavos[4]->first_team === null):
+                <?php if(isset($octavos) or $octavos[4]->first_team === null):
                     echo "-";
                 else:
                     foreach ($teams as $team):
@@ -332,7 +332,7 @@
             </div>
 
             <div class="clasif-div">
-                <?php if($octavos[4]->second_team === null):
+                <?php if(isset($octavos) or $octavos[4]->second_team === null):
                     echo "-";
                 else:
                     foreach ($teams as $team):
@@ -346,7 +346,7 @@
 
         <div class="d-flex flex-column gap-3">
             <div class="clasif-div">
-                <?php if($octavos[5]->first_team === null):
+                <?php if(isset($octavos) or $octavos[5]->first_team === null):
                     echo "-";
                 else:
                     foreach ($teams as $team):
@@ -372,7 +372,7 @@
 
         <div class="d-flex flex-column gap-3">
             <div class="clasif-div">
-                <?php if($octavos[6]->first_team === null):
+                <?php if(isset($octavos) or $octavos[6]->first_team === null):
                     echo "-";
                 else:
                     foreach ($teams as $team):
@@ -384,7 +384,7 @@
             </div>
 
             <div class="clasif-div">
-                <?php if($octavos[6]->second_team === null):
+                <?php if(isset($octavos) or $octavos[6]->second_team === null):
                     echo "-";
                 else:
                     foreach ($teams as $team):
@@ -398,7 +398,7 @@
 
         <div class="d-flex flex-column gap-3">
             <div class="clasif-div">
-                <?php if($octavos[7]->first_team === null):
+                <?php if(isset($octavos) or $octavos[7]->first_team === null):
                     echo "-";
                 else:
                     foreach ($teams as $team):
@@ -410,7 +410,7 @@
             </div>
 
             <div class="clasif-div">
-                <?php if($octavos[7]->second_team === null):
+                <?php if(isset($octavos) or $octavos[7]->second_team === null):
                     echo "-";
                 else:
                     foreach ($teams as $team):

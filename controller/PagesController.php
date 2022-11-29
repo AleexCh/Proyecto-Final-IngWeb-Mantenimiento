@@ -65,6 +65,7 @@ class PagesController
 
     public static function getPosiciones(Router $router) : void
     {
+        session_start();
         $teams = Teams::findAll();
         $router->render("pages/posiciones", "index", [
             "background" => "bg_teams",
@@ -170,7 +171,6 @@ class PagesController
 
     public static function apiGetFavorites() : void
     {
-        session_start();
         Auth::authenticate();
         $favorites = Favorites::findAllWhere("user_id", $_SESSION["user_id"]);
         $list = [];

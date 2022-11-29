@@ -1,6 +1,6 @@
 <?php
     include_once __DIR__ . "./../components/header.php";
-    $ruta = "http://localhost:80";
+    $ruta = "http://localhost:" . $_SERVER['SERVER_PORT'];
 ?>
 
 <h1 class="text-center fs-big text-white my-5">Lista de API's</h1>
