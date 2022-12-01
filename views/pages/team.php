@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <div class="px-3 px-md-5 mb-5 bg-form-auth" style="max-height:75%;">
+    <div class="px-3 px-md-5 mb-5 bg-form-auth" style="max-height:1140px;">
         <div class="overflow-x-scroll">
             <table class="table bg-transparent table-hover text-nowrap">
                 <thead>
