@@ -9,6 +9,7 @@ use Model\Favorites;
 use Model\Games;
 use Model\Players;
 use Model\Teams;
+use Model\Logro;
 
 class PagesController
 {
@@ -42,6 +43,7 @@ class PagesController
 
         $players = Players::findAllWhere("team_id", $team->id);
         $games = Games::findAll();
+        $logros = Logro::findAllWhere("team_id", $team->id);
 
         session_start();
         if(isset($_SESSION["is_auth"])) {
@@ -52,7 +54,8 @@ class PagesController
                 "equipo" => $team,
                 "games" => $games,
                 "players" => $players,
-                "favorites" => $favorites
+                "favorites" => $favorites,
+                "logros" => $logros
             ]);
             die();
         }
@@ -63,6 +66,7 @@ class PagesController
             "equipo" => $team,
             "games" => $games,
             "players" => $players,
+            "logros" => $logros
         ]);
         die();
     }
