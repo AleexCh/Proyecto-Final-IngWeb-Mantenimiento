@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/admin/equipos">Panel de Administración</a>
+        <a class="navbar-brand" href="/admin/partidos">Panel de Administración</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,10 +16,6 @@
                     </li>
                     <li class="nav-item text-center">
                         <a href="/admin/partidos" class="nav-link <?php echo (isset($active) && $active == 'games') ? 'active fw-bolder' : ''; ?>" aria-current="page">Partidos</a>
-                    </li>
-                   
-                    <li class="nav-item text-center">
-                        <a href="/admin/equipos" class="nav-link <?php echo (isset($active) && $active == 'teams') ? 'active fw-bolder' : ''; ?>" aria-current="page">Equipos</a>
                     </li>
                     <li class="nav-item">
                         <a href="/logout" class="btn btn-light text-center text-uppercase w-100">Cerrar Sesión</a>

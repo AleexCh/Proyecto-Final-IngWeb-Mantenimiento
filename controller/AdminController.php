@@ -75,64 +75,6 @@ class AdminController
         self::renderAdminTeams($router, null);
     }
 
-    public static function getUpdateTeam(Router $router) : void
-    {
-        Auth::authorizate();
-
-        $id = $_GET["id"];
-        if(!isset($id)) {
-            header("Location: /admin/equipos");
-        }
-
-        self::renderUpdateTeam($router, null, $id);
-    }
-
-    public static function postUpdateTeam(Router $router) : void
-    {
-        Auth::authorizate();
-
-        $id = $_GET["id"];
-        if(!isset($id)) {
-            header("Location: /admin/equipos");
-        }
-
-        $team = Teams::findById(htmlspecialchars($_GET["id"]));
-        if (!isset($team)) {
-            header("Location: /admin/equipos");
-        }
-
-//        echo "<pre>";
-//        var_dump($_POST);
-//        var_dump($team);
-
-        if(isset($_POST["win"])) {
-            $team->win = (int)$_POST["win"];
-        }
-
-        if(isset($_POST["draw"])) {
-            $team->draw = (int)$_POST["draw"];
-        }
-
-        if(isset($_POST["loss"])) {
-            $team->loss = (int)$_POST["loss"];
-        }
-
-        if(isset($_POST["goals_favor"])) {
-            $team->goals_favor = (int) $_POST["goals_favor"];
-        }
-
-        if(isset($_POST["goals_againts"])) {
-            $team->goals_againts = (int) $_POST["goals_againts"];
-        }
-
-//        var_dump($team);
-//        echo "<pre>";
-//        exit();
-
-        $team->save();
-        header("Location: /admin/equipos");
-    }
-
     private static function renderIndex($router, string | null $error) : void
     {
         $games = Games::findAll();
@@ -172,20 +114,6 @@ class AdminController
             "error" => $error,
             "teams" => $teams,
             "game" => $game
-        ]);
-    }
-
-    private static function renderUpdateTeam($router, string | null $error, int $id) : void
-    {
-        $team = Teams::findById(htmlspecialchars($id));
-        if (!isset($team)) {
-            header("Location: /admin/partidos");
-        }
-
-        $router->render("pages/admin/updateTeams", "index", [
-            "background" => "",
-            "error" => $error,
-            "team" => $team,
         ]);
     }
 }

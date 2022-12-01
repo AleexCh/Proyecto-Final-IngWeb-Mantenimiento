@@ -51,10 +51,7 @@ $router->get("/api/delete-favoritos", [PagesController::class, "apiDeleteFavorit
 
 //Admin Routes
 $router->get("/admin/partidos", [AdminController::class, "getIndex"]);
-$router->get("/admin/equipos", [AdminController::class, "getAdminTeams"]);
 $router->get("/editar-partido", [AdminController::class, "getUpdateGame"]);
 $router->post("/editar-partido", [AdminController::class, "postUpdateGame"]);
-$router->get("/editar-equipo", [AdminController::class, "getUpdateTeam"]);
-$router->post("/editar-equipo", [AdminController::class, "postUpdateTeam"]);
 
 $router->verifyRoutes();
