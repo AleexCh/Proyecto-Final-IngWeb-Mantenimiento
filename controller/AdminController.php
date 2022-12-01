@@ -43,12 +43,12 @@ class AdminController
         }
         
         if (isset($_POST["first_team"])) {
-            $gameToUpdate->first_team = $_POST["first_team"];
+            $gameToUpdate->first_team = (int)$_POST["first_team"];
         }
 
         if (isset($_POST["second_team"])) {
-            $gameToUpdate->second_team = $_POST["second_team"];
-        }
+            $gameToUpdate->second_team =(int)$_POST["second_team"];
+        }  
 
         if (isset($_POST["first_team_goals"])){
             $gameToUpdate->first_team_goals = $_POST["first_team_goals"];
