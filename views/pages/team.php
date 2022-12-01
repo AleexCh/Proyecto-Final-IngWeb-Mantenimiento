@@ -29,9 +29,34 @@
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
+        <div style="margin-top:100px;">
+        <h1 class="my-4 text-center text-white fs-big"><?php echo "Logros"; ?></h1>Logros
+            <div class="px-3 px-md-5 mb-5 bg-form-auth">
+                <div class="overflow-x-scroll">
+                    <table class="table bg-transparent table-hover text-nowrap">
+                        <thead>
+                        <tr class="text-center">
+                            <th scope="col" class="py-3">Mundial</th>
+                            <th scope="col" class="py-3">Año</th>
+                            <th scope="col" class="py-3">Puesto</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-center">
+                        <?php foreach ($logros ?? [] as $logro): ?>
+                            <tr>
+                                <td class="flex-nowrap"><?php echo $logro->place ?></td>
+                                <td class="flex-nowrap"><?php echo $logro->year ?></td>          
+                                <td class="flex-nowrap"><?php echo $logro->description ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="px-3 px-md-5 mb-5 bg-form-auth">
+    <div class="px-3 px-md-5 mb-5 bg-form-auth" style="max-height:75%;">
         <div class="overflow-x-scroll">
             <table class="table bg-transparent table-hover text-nowrap">
                 <thead>
