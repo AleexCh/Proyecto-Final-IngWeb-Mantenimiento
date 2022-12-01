@@ -41,32 +41,24 @@ class AdminController
         if (!isset($gameToUpdate)) {
             header("Location: /admin/partidos");
         }
-
-        if(isset($_POST["first_team"]) && empty($_POST["first_team"])) {
-            $gameToUpdate->first_team = null;
-        } else if (isset($_POST["first_team"]) && $gameToUpdate->first_team != $_POST["first_team"]) {
+        
+        if (isset($_POST["first_team"])) {
             $gameToUpdate->first_team = $_POST["first_team"];
         }
 
-        if(isset($_POST["second_team"]) && empty($_POST["second_team"])) {
-            $gameToUpdate->second_team = null;
-        } else if (isset($_POST["second_team"]) && $gameToUpdate->second_team != $_POST["second_team"]) {
+        if (isset($_POST["second_team"])) {
             $gameToUpdate->second_team = $_POST["second_team"];
         }
 
-        if(isset($_POST["first_team_goals"]) && empty($_POST["first_team_goals"])) {
-            $gameToUpdate->first_team_goals = 0;
-        } else if (isset($_POST["first_team_goals"])  && $gameToUpdate->first_team_goals != $_POST["first_team_goals"]) {
+        if (isset($_POST["first_team_goals"])) {
             $gameToUpdate->first_team_goals = $_POST["first_team_goals"];
         }
 
-        if(isset($_POST["second_team_goals"]) && empty($_POST["second_team_goals"])) {
-            $gameToUpdate->second_team_goals = 0;
-        } else if (isset($_POST["second_team_goals"]) && $gameToUpdate->second_team_goals != $_POST["second_team_goals"]) {
+        if (isset($_POST["second_team_goals"])) {
             $gameToUpdate->second_team_goals = $_POST["second_team_goals"];
         }
 
-        if (isset($_POST["play_date"]) && !empty($_POST["play_date"]) && $gameToUpdate->play_date != $_POST["play_date"]) {
+        if (isset($_POST["play_date"])) {
             $gameToUpdate->play_date = $_POST["play_date"];
         }
 
@@ -113,23 +105,23 @@ class AdminController
 //        var_dump($_POST);
 //        var_dump($team);
 
-        if(isset($_POST["win"]) && !empty($_POST["win"])) {
+        if(isset($_POST["win"])) {
             $team->win = $_POST["win"];
         }
 
-        if(isset($_POST["draw"]) && !empty($_POST["draw"])) {
+        if(isset($_POST["draw"])) {
             $team->draw = $_POST["draw"];
         }
 
-        if(isset($_POST["loss"]) && !empty($_POST["loss"])) {
+        if(isset($_POST["loss"])) {
             $team->loss = $_POST["loss"];
         }
 
-        if(isset($_POST["goals_favor"]) && !empty($_POST["goals_favor"])) {
+        if(isset($_POST["goals_favor"])) {
             $team->goals_favor = $_POST["goals_favor"];
         }
 
-        if(isset($_POST["goals_againts"]) && !empty($_POST["goals_againts"])) {
+        if(isset($_POST["goals_againts"])) {
             $team->goals_againts = $_POST["goals_againts"];
         }
 
