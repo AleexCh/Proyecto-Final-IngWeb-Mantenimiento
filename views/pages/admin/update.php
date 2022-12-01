@@ -24,7 +24,7 @@
                     name="first_team_goals"
                     type="number"
                     min="0"
-                    value="<?php echo $game->first_team_goals ?? null ?>"
+                    value="<?php echo $game->first_team_goals ?? 0 ?>"
                     required
                     class="form-control"
                     >
@@ -51,7 +51,7 @@
                             name="second_team_goals"
                             type="number"
                             min="0"
-                            value="<?php echo $game->second_team_goals ?? null ?>"
+                            value="<?php echo $game->second_team_goals ?? 0 ?>"
                             required
                             class="form-control"
                     >

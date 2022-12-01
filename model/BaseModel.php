@@ -185,7 +185,7 @@ class BaseModel
         $values = [];
         foreach($attributes as $key => $value)
         {
-            if($value != null) {
+            if( (is_int($value) and $value >=0) or $value != null) {
                 $values[] = "`{$key}`='{$value}'";
             } else {
                 $values[] = "{$key}=null";

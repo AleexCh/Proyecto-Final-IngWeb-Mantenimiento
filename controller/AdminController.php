@@ -12,14 +12,12 @@ class AdminController
 {
     public static function getIndex(Router $router) : void
     {
-        Auth::authenticate();
         Auth::authorizate();
         self::renderIndex($router, null);
     }
 
     public static function getUpdateGame(Router $router) : void
     {
-        Auth::authenticate();
         Auth::authorizate();
 
         $id = $_GET["id"];
@@ -32,7 +30,6 @@ class AdminController
 
     public static function postUpdateGame(Router $router) : void
     {
-        Auth::authorizate();
         Auth::authorizate();
 
         $id = $_GET["id"];
@@ -58,13 +55,13 @@ class AdminController
         }
 
         if(isset($_POST["first_team_goals"]) && empty($_POST["first_team_goals"])) {
-            $gameToUpdate->first_team_goals = null;
+            $gameToUpdate->first_team_goals = 0;
         } else if (isset($_POST["first_team_goals"])  && $gameToUpdate->first_team_goals != $_POST["first_team_goals"]) {
             $gameToUpdate->first_team_goals = $_POST["first_team_goals"];
         }
 
         if(isset($_POST["second_team_goals"]) && empty($_POST["second_team_goals"])) {
-            $gameToUpdate->second_team_goals = null;
+            $gameToUpdate->second_team_goals = 0;
         } else if (isset($_POST["second_team_goals"]) && $gameToUpdate->second_team_goals != $_POST["second_team_goals"]) {
             $gameToUpdate->second_team_goals = $_POST["second_team_goals"];
         }
@@ -83,13 +80,11 @@ class AdminController
     public static function getAdminTeams(Router $router) : void
     {
         Auth::authorizate();
-        Auth::authenticate();
         self::renderAdminTeams($router, null);
     }
 
     public static function getUpdateTeam(Router $router) : void
     {
-        Auth::authenticate();
         Auth::authorizate();
 
         $id = $_GET["id"];
@@ -102,7 +97,6 @@ class AdminController
 
     public static function postUpdateTeam(Router $router) : void
     {
-        Auth::authorizate();
         Auth::authorizate();
 
         $id = $_GET["id"];
