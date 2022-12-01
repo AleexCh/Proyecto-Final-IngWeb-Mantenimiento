@@ -10,8 +10,8 @@ class Games extends BaseModel
     public int | null $id;
     public int | null $first_team;
     public int | null $second_team;
-    public int | null $first_team_goals;
-    public int | null $second_team_goals;
+    public string | null $first_team_goals;
+    public string | null $second_team_goals;
     public string | null $play_date;
     public int | null $fase_id;
 

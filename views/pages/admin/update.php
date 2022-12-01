@@ -22,9 +22,9 @@
                     <input
                     id="first_team_goals"
                     name="first_team_goals"
-                    type="number"
+                    type="String"
                     min="0"
-                    value="<?php echo $game->first_team_goals ?? 0 ?>"
+                    value="<?php echo $game->first_team_goals ?? '0' ?>"
                     required
                     class="form-control"
                     >
@@ -49,9 +49,9 @@
                     <input
                             id="second_team_goals"
                             name="second_team_goals"
-                            type="number"
+                            type="string"
                             min="0"
-                            value="<?php echo $game->second_team_goals ?? 0 ?>"
+                            value="<?php echo $game->second_team_goals ?? '0' ?>"
                             required
                             class="form-control"
                     >

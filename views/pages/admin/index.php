@@ -35,7 +35,7 @@
                                     <p><?php echo $team->country ?></p>
                                 <?php endif; ?>
                             <?php endforeach; ?>
-                            <p><?php echo $game->second_team_goals ?? "-" ?></p>
+                            <p><?php echo $game->second_team_goals?? "-" ?></p>
                         </div>
                     </td>
                     <td><?php echo $game->play_date ?></td>

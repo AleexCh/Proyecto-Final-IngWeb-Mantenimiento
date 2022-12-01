@@ -209,13 +209,13 @@ class BaseModel
         $values = [];
         foreach($attributes as $key => $value)
         {
-            if( (is_int($value) and $value >=0) or $value != null) {
+            if( $value !='0' or $value != null) {
                 $values[] = "`{$key}`='{$value}'";
             } else {
                 $values[] = "{$key}=null";
             }
         }
-
+        
         $query = "UPDATE " . static::$table ." SET ";
         $query .=  join(', ', $values );
         $query .= " WHERE id = '" . self::$database->escape_string($this->id) . "' ";
