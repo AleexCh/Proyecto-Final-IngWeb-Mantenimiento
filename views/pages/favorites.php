@@ -17,6 +17,7 @@
 
                         <?php foreach ($games as $game): ?>
                             <?php if($game->first_team == $team->id || $game->second_team == $team->id): ?>
+                                <h6 class="text-center p-3"><?php echo $game->play_date; ?></h3>
                                 <div class="px-4">
                                     <div class="partido bg-form-auth mb-3 p-4">
                                         <?php foreach ($teams as $tm): ?>
