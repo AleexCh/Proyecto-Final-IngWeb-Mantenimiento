@@ -13,7 +13,6 @@ class User extends BaseModel //Extendemos de baseModel esto nos ofrece las funci
     public string | null $last_name;
     public string | null $email;
     public string | null $password;
-    public string | null $repeat_password;
     public int $is_admin;
 
     //constructor de nuestra clase
@@ -53,7 +52,7 @@ class User extends BaseModel //Extendemos de baseModel esto nos ofrece las funci
         }
 
         //quitamos el repetir password de nuestro objeto
-        unlink($this->repeat_password);
+        unset($this->repeat_password);
         return null;
     }
 

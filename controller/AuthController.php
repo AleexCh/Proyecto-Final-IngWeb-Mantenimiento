@@ -12,7 +12,13 @@ class AuthController
 {
     public static function getRegister(Router $router) : void
     {
-        self::renderCreateUser($router, null);
+        session_start();
+        if(!$_SESSION){
+                     self::renderCreateUser($router, null);
+        }
+        else{
+            header("Location: /");
+        }
     }
 
     public static function postRegister(Router $router) : void
@@ -41,12 +47,19 @@ class AuthController
             //contraseñas y luego se guarda :v
             $userToCreate->hashPassword();
             $userToCreate->save();
+            self::postLogin($router);
         }
     }
 
     public static function getLogin(Router $router) : void
-    {
-        self::renderLogin($router, null);
+    {   
+        session_start();
+        if(!$_SESSION){
+                    self::renderLogin($router, null);
+        }
+        else{
+            header("Location: /");
+        }
     }
 
     public static function postLogin(Router $router) : void
@@ -85,7 +98,7 @@ class AuthController
         //el arreglo de $_SESSION y retornamos a la pagina de /admin y cortamos
         if($userToLogin->is_admin) {
             $_SESSION["is_admin"] = true;
-            header("Location: /admin");
+            header("Location: /admin/partidos");
             die();
         }
 

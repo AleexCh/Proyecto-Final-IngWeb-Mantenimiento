@@ -14,7 +14,11 @@ class PagesController
 {
     public static function index(Router $router): void
     {
-        $router->render("index", "index");
+        session_start();
+        $teams = Teams::findAll();
+        $router->render("pages/index", "index" ,[
+            "teams" => $teams
+        ]);
     }
 
     public static function getTeam(Router $router) : void
@@ -94,6 +98,7 @@ class PagesController
 
     public static function getResultadosPage(Router $router) : void
     {
+        session_start();
         $date = date("Y-n-d");
 
         if($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -111,7 +116,8 @@ class PagesController
     }
 
     public static function getClasif(Router $router) : void
-    {
+    {   
+        session_start();
         $octavos = Games::findAllWhere("fase_id", "2");
         $cuartos = Games::findAllWhere("fase_id", "3");
         $semis = Games::findAllWhere("fase_id", "4");
@@ -132,6 +138,7 @@ class PagesController
     //API
     public static function apis(Router $router) : void
     {
+        session_start();
         $apis = ["/api/equipos", "/api/equipo", "/api/partidos", "/api/fases", "/api/favoritos"];
         $router->render("pages/apis", "index", [
             "background" => "bg_teams",
