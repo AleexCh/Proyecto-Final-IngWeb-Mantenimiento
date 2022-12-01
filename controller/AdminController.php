@@ -63,7 +63,21 @@ class AdminController
         }
 
         $gameSaved = $gameToUpdate->save();
-        if ($gameSaved) {
+        
+        $teamsToUpdate = Teams::findAllpositionForGames();
+        foreach ($teamsToUpdate as $team){
+            $teamToUpdate = new Teams ();
+            $teamToUpdate->id = $team->id;
+            $teamToUpdate->country = $team->country;
+            $teamToUpdate->group = $team->group;
+            $teamToUpdate->win = $team->win;
+            $teamToUpdate->draw = $team->draw;
+            $teamToUpdate->loss = $team->loss;
+            $teamToUpdate->goals_favor = $team->goals_favor;
+            $teamToUpdate->goals_againts = $team->goals_againts;
+            $teamToUpdate->save();
+        }
+        if ($gameSaved &&$teamToUpdate) {
             header("Location: /admin/partidos");
         }
         die();

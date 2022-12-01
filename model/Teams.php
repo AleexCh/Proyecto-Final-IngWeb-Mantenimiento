@@ -5,7 +5,7 @@ namespace Model;
 class Teams extends BaseModel
 {
     protected static string $table = "teams";
-    protected static array $columnsDB = ["id", "country", "group"];
+    protected static array $columnsDB = ["id", "country", "group", "win", "draw", "loss", "goals_favor", "goals_againts"];
 
     public int | null $id;
     public string | null $country;

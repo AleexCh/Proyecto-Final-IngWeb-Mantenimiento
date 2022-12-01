@@ -221,9 +221,9 @@ class BaseModel
         $query .= " WHERE id = '" . self::$database->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 ";
 
-        echo "<pre>";
-        var_dump($query);
-        echo "</pre>";
+        //echo "<pre>";
+       // var_dump($query);
+        //echo "</pre>";
 
         $result = self::$database->query($query);
         return [
