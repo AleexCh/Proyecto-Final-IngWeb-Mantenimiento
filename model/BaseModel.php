@@ -162,6 +162,30 @@ class BaseModel
         return $result;
     }
 
+    public static function findAllPositionForGames()
+    {
+        $query = "select 
+            first_team id,
+            country,
+            `group`,
+            count(case when first_team_goals > second_team_goals then 1 end) win, 
+            count(case when  first_team_goals = second_team_goals then 1 end) draw, 
+            count(case when second_team_goals > first_team_goals then 1 end) loss, 
+            sum(first_team_goals) goals_favor, 
+            sum(second_team_goals) goals_againts
+            from (
+                select first_team, first_team_goals, second_team_goals from games 
+            union all
+                select second_team, second_team_goals, first_team_goals from games
+            ) a join teams on first_team=id
+            group by first_team
+            order by sum(
+                case when first_team_goals > second_team_goals then 3 else 0 end 
+              + case when first_team_goals = second_team_goals then 1 else 0 end
+            ) desc;";
+           return self::querySQL($query);
+    }
+
     //Implementacion en la funcion save en este caso crea
     public function create(): array
     {

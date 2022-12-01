@@ -74,7 +74,7 @@ class PagesController
     public static function getPosiciones(Router $router) : void
     {
         session_start();
-        $teams = Teams::findAll();
+        $teams = Teams::findAllpositionForGames();
         $router->render("pages/posiciones", "index", [
             "background" => "bg_teams",
             "teams" => $teams
