@@ -7,6 +7,7 @@ namespace Controller;
 
 use App\Router;
 use Model\User;
+use Model\Teams;
 
 class AuthController
 {
@@ -121,17 +122,21 @@ class AuthController
     // mensaje de error el cual tambien podria ir dentro de los attributos
     private static function renderCreateUser($router, string | null $error) : void
     {
+        $teams = Teams::findAll();
         $router->render("pages/auth/register", "index", [
             "background" => "bg-auth",
-            "error" => $error
+            "error" => $error,
+            "teams" => $teams
         ]);
     }
 
     private static function renderLogin($router, string | null $error) : void
     {
+        $teams = Teams::findAll();
         $router->render("pages/auth/login", "index", [
             "background" => "bg-auth",
-            "error" => $error
+            "error" => $error,
+            "teams" => $teams
         ]);
     }
 

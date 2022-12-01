@@ -26,7 +26,7 @@
                         <a class="nav-link" href="/resultados">Resultados</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/posiciones">Tabla de posiciones por equipos</a>
+                        <a class="nav-link" href="/posiciones">Tabla de posiciones</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/favoritos">Favoritos</a>
