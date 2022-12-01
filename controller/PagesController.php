@@ -139,10 +139,12 @@ class PagesController
     public static function apis(Router $router) : void
     {
         session_start();
+        $teams = Teams::findAll();
         $apis = ["/api/equipos", "/api/equipo", "/api/partidos", "/api/fases", "/api/favoritos"];
         $router->render("pages/apis", "index", [
             "background" => "bg_teams",
-            "apis" => $apis
+            "apis" => $apis,
+            "teams" => $teams
         ]);
     }
 
