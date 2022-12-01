@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img
                         src="https://logodownload.org/wp-content/uploads/2018/07/world-cup-2022-logo.png"
                         height="50"
@@ -40,6 +40,9 @@
                 </ul>
 
                 <div class="nav-item">
+                    <?php if(isset($_SESSION["is_admin"]) && $_SESSION["is_admin"]==true): ?>
+                        <a class="btn btn-outline-primary col-12 col-lg-auto" href="/admin/partidos">Admin Panel</a>
+                    <?php endif; ?>
                     <?php if(isset($_SESSION["is_auth"])): ?>
                         <a class="btn btn-primary col-12 col-lg-auto" href="/logout">Cerrar Sesión</a>
                     <?php else: ?>

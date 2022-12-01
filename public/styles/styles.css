@@ -104,3 +104,31 @@
 .cursor-disable {
     cursor: not-allowed;
 }
+/*pagina de inicio*/
+.Controlbase{
+    
+    background-color: #ffffff;
+    height: 100vh;
+    /* margin: auto; */
+    padding-top:9%;
+}
+.tituloPrincipal{
+    font-family: 'Permanent Marker', cursive;
+    color: #0F3D3E;
+    font-size: 5em;
+}
+.sPrincipal{
+    margin: 0 0 0 2%;
+}
+.textoSecundario{
+    font-size: 2em;
+    font-family: 'Sora', sans-serif;
+
+}
+
+.textoMedio{
+    margin: 6% 0 6% 0;
+}
+html {
+    scroll-behavior: smooth;
+}

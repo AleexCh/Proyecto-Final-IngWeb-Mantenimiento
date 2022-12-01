@@ -1,3 +1,4 @@
+<?php include_once __DIR__ . "./../../components/header.php" ?>
 <div class="w-auth py-5 px-4 px-md-5 bg-form-auth my-5">
     <h2 class="text-center">Iniciar Sesión</h2>
     <?php if (isset($error)): ?>
