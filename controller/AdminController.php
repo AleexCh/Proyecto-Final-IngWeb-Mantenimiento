@@ -51,11 +51,11 @@ class AdminController
         }
 
         if (isset($_POST["first_team_goals"])) {
-            $gameToUpdate->first_team_goals = $_POST["first_team_goals"];
+            $gameToUpdate->first_team_goals = (int)$_POST["first_team_goals"];
         }
 
         if (isset($_POST["second_team_goals"])) {
-            $gameToUpdate->second_team_goals = $_POST["second_team_goals"];
+            $gameToUpdate->second_team_goals = (int)$_POST["second_team_goals"];
         }
 
         if (isset($_POST["play_date"])) {
@@ -106,23 +106,23 @@ class AdminController
 //        var_dump($team);
 
         if(isset($_POST["win"])) {
-            $team->win = $_POST["win"];
+            $team->win = (int)$_POST["win"];
         }
 
         if(isset($_POST["draw"])) {
-            $team->draw = $_POST["draw"];
+            $team->draw = (int)$_POST["draw"];
         }
 
         if(isset($_POST["loss"])) {
-            $team->loss = $_POST["loss"];
+            $team->loss = (int)$_POST["loss"];
         }
 
         if(isset($_POST["goals_favor"])) {
-            $team->goals_favor = $_POST["goals_favor"];
+            $team->goals_favor = (int) $_POST["goals_favor"];
         }
 
         if(isset($_POST["goals_againts"])) {
-            $team->goals_againts = $_POST["goals_againts"];
+            $team->goals_againts = (int) $_POST["goals_againts"];
         }
 
 //        var_dump($team);
